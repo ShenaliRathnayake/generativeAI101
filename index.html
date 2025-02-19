@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dog Facts</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            text-align: center;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .fact-display {
+            margin: 20px 0;
+            font-size: 1.2em;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+        }
+
+        .show {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Dog Facts</h1>
+        <div id="factDisplay" class="fact-display"></div>
+        <button id="randomFactButton" class="button">Show Random Fact</button>
+        <button id="shareButton" class="button">Share on Twitter</button>
+    </div>
+    <script>
+        const dogFacts = [
+            {
+                "fact": "Unique Nose Prints",
+                "description": "Just like human fingerprints, every dog has a unique nose print that can be used to identify them."
+            },
+            {
+                "fact": "Dreaming Dogs",
+                "description": "Dogs experience REM (Rapid Eye Movement) sleep, which means they can dream just like humans do."
+            },
+            {
+                "fact": "Ancient Companions",
+                "description": "The Basenji dog breed is known as the 'barkless dog' because it doesn't bark like other dogs."
+            },
+            {
+                "fact": "Super Sniffers",
+                "description": "Dogs have up to 300 million smell receptors in their noses."
+            },
+            {
+                "fact": "Tail Language",
+                "description": "Dogs communicate with their tails."
+            },
+            {
+                "fact": "Paw Preference",
+                "description": "Dogs can show a preference for using one paw over the other."
+            },
+            {
+                "fact": "World's Largest Dog",
+                "description": "The Great Dane holds the record for the tallest dog breed."
+            },
+            {
+                "fact": "Dogs and Humans",
+                "description": "Dogs can understand human emotions."
+            },
+            {
+                "fact": "Oldest Dog",
+                "description": "The oldest recorded dog lived to be 29 years and 5 months old."
+            },
+            {
+                "fact": "Dogs in Space",
+                "description": "Laika became the first animal to orbit the Earth in 1957."
+            }
+        ];
+
+        document.getElementById('randomFactButton').addEventListener('click', () => {
+            const randomIndex = Math.floor(Math.random() * dogFacts.length);
+            const fact = dogFacts[randomIndex];
+            const factDisplay = document.getElementById('factDisplay');
+            factDisplay.innerHTML = `<strong>${fact.fact}</strong>: ${fact.description}`;
+            factDisplay.classList.add('show');
+        });
+
+        document.getElementById('shareButton').addEventListener('click', () => {
+            const factDisplay = document.getElementById('factDisplay').innerText;
+            const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(factDisplay)}`;
+            window.open(twitterUrl, '_blank');
+        });
+    </script>
+</body>
+</html>
